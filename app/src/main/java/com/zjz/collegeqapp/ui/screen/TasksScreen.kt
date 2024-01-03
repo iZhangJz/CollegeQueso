@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.zjz.collegeqapp.ui.componets.ChartView
 import com.zjz.collegeqapp.ui.componets.CircleRing
+import com.zjz.collegeqapp.ui.componets.DailyTaskListView
 import com.zjz.collegeqapp.ui.componets.appBarHeight
 import com.zjz.collegeqapp.ui.viewmodel.TaskViewModel
 
@@ -173,6 +174,9 @@ fun TasksScreen(taskViewModel: TaskViewModel = viewModel()){
                             .padding(8.dp)
                             .fillMaxWidth()
                     )
+
+                    // 每日任务列表
+                    DailyTaskListView()
                 }
             }
         }
