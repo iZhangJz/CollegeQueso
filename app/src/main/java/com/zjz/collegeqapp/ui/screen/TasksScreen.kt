@@ -18,6 +18,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.zjz.collegeqapp.ui.componets.ChartView
 import com.zjz.collegeqapp.ui.componets.CircleRing
 import com.zjz.collegeqapp.ui.componets.appBarHeight
 import com.zjz.collegeqapp.ui.viewmodel.TaskViewModel
@@ -140,7 +141,22 @@ fun TasksScreen(taskViewModel: TaskViewModel = viewModel()){
                     Text(
                         text = "最近一周获得积分情况",
                         fontSize = 14.sp,
-                        color = Color(0xFF999999))
+                        color = Color(0xFF999999)
+                    )
+                    // 积分明细折线图
+                    ChartView(taskViewModel.pointOfWeek, modifier = Modifier.padding(vertical = 8.dp))
+                    // 日期
+                    Row {
+                        taskViewModel.dateOfWeek.forEach{
+                            Text(
+                                text = it,
+                                fontSize = 12.sp,
+                                color = Color(0xFF999999),
+                                modifier = Modifier.weight(1f),
+                                textAlign = TextAlign.Center
+                            )
+                        }
+                    }
                 }
             }
         }

@@ -26,4 +26,13 @@ class TaskViewModel : ViewModel() {
         pointOfMonthPercent = 240f * pointOfMonth / totalPointOfMonth
     }
 
+    // 一周积分情况
+    var pointOfWeek by mutableStateOf(
+        listOf(200,0,620,1000,1420,540,730)
+    )
+        private set
+
+    // 日期
+    var dateOfWeek = listOf("01.01","01.02","01.03","01.04","01.05","01.06","今日")
+
 }
