@@ -36,6 +36,10 @@ fun TasksScreen(taskViewModel: TaskViewModel = viewModel()){
     LaunchedEffect(taskViewModel.pointOfMonth){
         taskViewModel.updatePointPercent()
     }
+    // 当pointOfToday改变时，更新今日任务提醒
+    LaunchedEffect(taskViewModel.pointOfToday){
+        taskViewModel.updateTipsOfToday()
+    }
 
     Column(
         modifier = Modifier
@@ -157,6 +161,18 @@ fun TasksScreen(taskViewModel: TaskViewModel = viewModel()){
                             )
                         }
                     }
+                    // 今日任务提醒
+                    Text(
+                        text = taskViewModel.tipsOfToday,
+                        color = Color(0xFF149EE7),
+                        fontSize = 14.sp,
+                        modifier = Modifier
+                            .padding(vertical = 8.dp)
+                            .clip(RoundedCornerShape(4.dp))
+                            .background(color = Color(0x33149EE7))
+                            .padding(8.dp)
+                            .fillMaxWidth()
+                    )
                 }
             }
         }

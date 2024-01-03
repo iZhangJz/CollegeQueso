@@ -35,4 +35,18 @@ class TaskViewModel : ViewModel() {
     // 日期
     var dateOfWeek = listOf("01.01","01.02","01.03","01.04","01.05","01.06","今日")
 
+    // 今日提醒文字
+    var tipsOfToday by mutableStateOf("今日获得0积分，快去完成下面的任务吧")
+        private set
+    //今日获取积分
+    var pointOfToday = 1200
+        private set
+
+    fun updateTipsOfToday(){
+        tipsOfToday = if (pointOfToday == 2000){
+            "今日获得2000积分，任务完成"
+        }else{
+            "今日获得${pointOfToday}积分，快去完成下面的任务吧"
+        }
+    }
 }
