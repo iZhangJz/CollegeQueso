@@ -1,4 +1,4 @@
-package com.zjz.collegeqapp.ui.screen
+package com.zjz.collegeqapp.ui.screen.firstlevel
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image

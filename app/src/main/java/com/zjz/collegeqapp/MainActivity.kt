@@ -14,7 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
-import com.zjz.collegeqapp.ui.screen.MainFrame
+import com.zjz.collegeqapp.ui.screen.NavHostApp
 import com.zjz.collegeqapp.ui.theme.CollegeQAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
             CollegeQAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-                    MainFrame()
+                    NavHostApp()
                 }
             }
         }

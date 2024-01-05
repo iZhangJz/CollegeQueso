@@ -1,4 +1,4 @@
-package com.zjz.collegeqapp.ui.screen
+package com.zjz.collegeqapp.ui.screen.firstlevel
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

@@ -13,9 +13,9 @@ import com.zjz.collegeqapp.model.entity.QuestionnaireEntity
 
 
 @Composable
-fun QuesItem(questionnaire: QuestionnaireEntity){
+fun QuesItem(questionnaire: QuestionnaireEntity,modifier: Modifier = Modifier){
     Column(
-        modifier = Modifier.padding(8.dp)
+        modifier = modifier.padding(8.dp)
     ) {
         Text(
             text = questionnaire.title,

@@ -1,5 +1,6 @@
-package com.zjz.collegeqapp.ui.screen
+package com.zjz.collegeqapp.ui.screen.firstlevel
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -24,7 +25,7 @@ import com.zjz.collegeqapp.ui.componets.TopAppBar
 import com.zjz.collegeqapp.ui.viewmodel.QuestionnaireViewModel
 
 @Composable
-fun QListScreen( QViewModel:QuestionnaireViewModel = viewModel()){
+fun QListScreen( QViewModel:QuestionnaireViewModel = viewModel(),onNavigateToQues:()->Unit = {}){
     Column(modifier = Modifier){
         TopAppBar(){
             // 搜索按钮
@@ -67,7 +68,7 @@ fun QListScreen( QViewModel:QuestionnaireViewModel = viewModel()){
         LazyColumn {
             // 问卷列表
             items(QViewModel.QList) {ques ->
-                QuesItem(ques)
+                QuesItem(ques, modifier = Modifier.clickable { onNavigateToQues() })
             }
         }
 

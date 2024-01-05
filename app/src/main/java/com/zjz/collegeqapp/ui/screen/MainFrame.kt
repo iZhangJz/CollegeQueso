@@ -15,10 +15,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.zjz.collegeqapp.model.entity.NavigationEntity
+import com.zjz.collegeqapp.ui.screen.firstlevel.MineScreen
+import com.zjz.collegeqapp.ui.screen.firstlevel.QListScreen
+import com.zjz.collegeqapp.ui.screen.firstlevel.TasksScreen
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun  MainFrame(){
+fun  MainFrame(onNavigateToQues:()->Unit = {}){
     val navigationEntities = listOf(
         NavigationEntity(title = "主页", icon = Icons.Filled.Home),
         NavigationEntity(title = "任务", icon = Icons.Filled.DateRange),
@@ -57,9 +60,9 @@ fun  MainFrame(){
     },
         modifier = Modifier.padding(bottom = 25.dp)) {
 
-        // 实现页面跳转
+        // 实现一级页面之间跳转
         when(currentNavigationIndex){
-            0-> QListScreen()
+            0-> QListScreen(onNavigateToQues = onNavigateToQues)
             1-> TasksScreen()
             2-> MineScreen()
         }
