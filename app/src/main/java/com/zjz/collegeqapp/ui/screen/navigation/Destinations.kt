@@ -11,4 +11,7 @@ sealed class Destinations(val route:String){
 
     // 二级页面问卷详情页
     object QuesDetailsScreen : Destinations("QuestionnaireDetailsScreen")
+
+    // 二级页面问卷编辑页
+    object QuesCreationScreen : Destinations("QuestionnaireCreationScreen")
 }

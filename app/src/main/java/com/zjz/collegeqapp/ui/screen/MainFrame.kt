@@ -21,7 +21,10 @@ import com.zjz.collegeqapp.ui.screen.firstlevel.TasksScreen
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun  MainFrame(onNavigateToQues:()->Unit = {}){
+fun  MainFrame(
+    onNavigateToQues:()->Unit = {},
+    onNavigateToQuesCreation:()->Unit = {}
+    ){
     val navigationEntities = listOf(
         NavigationEntity(title = "主页", icon = Icons.Filled.Home),
         NavigationEntity(title = "任务", icon = Icons.Filled.DateRange),
@@ -62,7 +65,10 @@ fun  MainFrame(onNavigateToQues:()->Unit = {}){
 
         // 实现一级页面之间跳转
         when(currentNavigationIndex){
-            0-> QListScreen(onNavigateToQues = onNavigateToQues)
+            0-> QListScreen(
+                onNavigateToQues = onNavigateToQues,
+                onNavigateToQuesCreation = onNavigateToQuesCreation
+                )
             1-> TasksScreen()
             2-> MineScreen()
         }

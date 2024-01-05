@@ -25,7 +25,11 @@ import com.zjz.collegeqapp.ui.componets.TopAppBar
 import com.zjz.collegeqapp.ui.viewmodel.QuestionnaireViewModel
 
 @Composable
-fun QListScreen( QViewModel:QuestionnaireViewModel = viewModel(),onNavigateToQues:()->Unit = {}){
+fun QListScreen(
+    QViewModel:QuestionnaireViewModel = viewModel(),
+    onNavigateToQues:()->Unit = {},
+    onNavigateToQuesCreation:()->Unit = {}
+    ){
     Column(modifier = Modifier){
         TopAppBar(){
             // 搜索按钮
@@ -62,7 +66,10 @@ fun QListScreen( QViewModel:QuestionnaireViewModel = viewModel(),onNavigateToQue
                 imageVector = Icons.Default.Add,
                 contentDescription = null,
                 tint = Color.White,
-                modifier = Modifier.size(26.dp))
+                modifier = Modifier
+                    .size(26.dp)
+                    .clickable { onNavigateToQuesCreation() }
+            )
             Spacer(modifier = Modifier.width(10.dp))
         }
         LazyColumn {
