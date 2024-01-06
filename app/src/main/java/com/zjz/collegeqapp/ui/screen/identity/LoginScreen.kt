@@ -21,13 +21,18 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.zjz.collegeqapp.R
+import com.zjz.collegeqapp.model.LocalUserViewModel
 
 /**
  * 登录页面
  */
 
 @Composable
-fun LoginScreen(){
+fun LoginScreen(
+    onNavigateToMain: ()->Unit = {}
+    ){
+
+    val userViewModel = LocalUserViewModel.current
 
     // 屏幕宽度和高度
     val screenWidth : Float
@@ -46,6 +51,10 @@ fun LoginScreen(){
     }
 
     var showPassword by remember {
+        mutableStateOf(false)
+    }
+
+    var openLoginDialog by remember {
         mutableStateOf(false)
     }
 
@@ -68,12 +77,12 @@ fun LoginScreen(){
                 ))
         )
         Column(
-            modifier = Modifier.fillMaxSize().padding(60.dp),
+            modifier = Modifier.fillMaxSize().padding(6.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             Column {
-                Spacer(modifier = Modifier.height(180.dp))
+                Spacer(modifier = Modifier.height(150.dp))
                 Text(
                     text = "College Queso",
                     color = Color.White,
@@ -118,6 +127,8 @@ fun LoginScreen(){
                     )
                 )
 
+
+
                 // 密码输入框
                 TextField(
                     value = userPassword,
@@ -161,23 +172,43 @@ fun LoginScreen(){
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
+
                 // 登录按钮
-                TextButton(onClick = {}){
+                TextButton(onClick = {
+                    if ( userViewModel.login(userName,userPassword) ) onNavigateToMain()
+                    else openLoginDialog = true
+                }){
                     Text(
                         text = "登录",
                         color = Color.White,
                         fontSize = 16.sp
-                        )
+                    )
                 }
+                if (openLoginDialog){
+                    AlertDialog(
+                        // 登录失败弹窗
+                        onDismissRequest = {openLoginDialog = false},
+                        title = { Text(text = "登录失败", fontSize = 18.sp, color = Color.Black) },
+                        text = { Text(text = "用户名或密码错误，请重试", fontSize = 14.sp, color = Color.Black) },
+                        confirmButton = {
+                            TextButton(onClick = {openLoginDialog = false}){
+                                Text(text = "确定", fontSize = 16.sp, color = Color.Black)
+                            }
+                        }
+                    )
+                }
+
             }
             // 注册按钮
             TextButton(onClick = {} ){
                 Text(
                     text = "还没有账号？点击立即注册",
                     color = Color.LightGray,
-                    fontSize = 14.sp
+                    fontSize = 14.sp,
+                    modifier = Modifier.padding(bottom = 26.dp)
                 )
             }
         }
     }
 }
+

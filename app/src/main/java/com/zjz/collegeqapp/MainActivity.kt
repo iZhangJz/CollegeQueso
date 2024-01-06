@@ -13,10 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import com.zjz.collegeqapp.ui.screen.NavHostApp
 import com.zjz.collegeqapp.ui.theme.CollegeQAppTheme
+import com.zjz.collegeqapp.utils.SQLiteHelper
 
 class MainActivity : ComponentActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val dbHelper = SQLiteHelper(this)
         // 将页面铺满整个手机页面
         WindowCompat.setDecorFitsSystemWindows(window,false)
 
@@ -29,7 +33,7 @@ class MainActivity : ComponentActivity() {
             CollegeQAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-                    NavHostApp()
+                    NavHostApp(dbHelper)
                 }
             }
         }

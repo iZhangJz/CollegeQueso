@@ -6,6 +6,10 @@ package com.zjz.collegeqapp.ui.screen.navigation
  */
 
 sealed class Destinations(val route:String){
+
+    // 登录页面
+    object LoginScreen : Destinations("LoginScreen")
+
     // 一级页面主框架
     object MainFrame : Destinations("MainFrame")
 
