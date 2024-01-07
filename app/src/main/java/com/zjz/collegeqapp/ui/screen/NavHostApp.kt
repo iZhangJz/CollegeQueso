@@ -43,11 +43,15 @@ fun NavHostApp(dbHelper: SQLiteHelper){
                     enterTransition = {
                         // 设置页面跳转动画
                         slideIntoContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(500))
-                    }, exitTransition = {
+                    },
+                    exitTransition = {
                         slideOutOfContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(500))
-                    }){
+                    },
+                    ){
                         LoginScreen(
-                            onNavigateToMain = {navController.navigate(Destinations.MainFrame.route)},
+                            onNavigateToMain = {navController.navigate(Destinations.MainFrame.route){
+                                popUpTo("LoginScreen"){inclusive = true}
+                            } },
                             onNavigateToRegister = {navController.navigate(Destinations.RegisterScreen.route)}
                         )
                 }
@@ -63,12 +67,14 @@ fun NavHostApp(dbHelper: SQLiteHelper){
                         slideOutOfContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(500))
                     }){
                         RegisterScreen(
-                            onNavigateToMain = {navController.navigate(Destinations.MainFrame.route)}
+                            onNavigateToMain = {navController.navigate(Destinations.MainFrame.route){
+                                popUpTo("LoginScreen"){inclusive = true}
+                            } }
                         )
                 }
 
 
-                // 一级页面
+                // 一级页面(主页面)
                 composable(
                     Destinations.MainFrame.route,
                     enterTransition = {

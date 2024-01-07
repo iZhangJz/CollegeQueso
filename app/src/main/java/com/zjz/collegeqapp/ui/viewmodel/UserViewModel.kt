@@ -23,6 +23,8 @@ class UserViewModel(private val dbHelper: SQLiteHelper): ViewModel(){
         if (!dbHelper.verifyPassword(userName,password,dbHelper.readableDatabase)){
             return false
         }
+        // 设置用户的登录状态为成功登录
+        user = UserInfoEntity(userName, password)
         return true
     }
 
@@ -45,6 +47,7 @@ class UserViewModel(private val dbHelper: SQLiteHelper): ViewModel(){
             // 插入失败 注册失败
             return Pair(false,"服务器异常")
         }
+        user = UserInfoEntity(userName, password)
         return Pair(true,"注册成功")
     }
 }

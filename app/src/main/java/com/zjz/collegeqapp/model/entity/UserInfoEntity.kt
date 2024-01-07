@@ -1,5 +1,7 @@
 package com.zjz.collegeqapp.model.entity
 
-data class UserInfoEntity (
-    val userName: String
-)
+class UserInfoEntity(private val userName:String,private val password:String) {
+    override fun toString(): String {
+        return "UserInfoEntity(userName='$userName', password='$password')"
+    }
+}
