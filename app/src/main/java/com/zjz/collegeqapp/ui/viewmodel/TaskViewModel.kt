@@ -4,14 +4,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.zjz.collegeqapp.model.entity.UserInfoEntity
 
 
-class TaskViewModel : ViewModel() {
+class TaskViewModel(user: UserInfoEntity) : ViewModel() {
 
     var taskDate by mutableStateOf("任务周期：2023.12.1-2023.12.31")
         private set
 
-    var pointOfMonth by mutableStateOf(22000)
+    var pointOfMonth by mutableStateOf(user.pointOfMonth)
         private set
 
     // 一个月能获得的最大积分
@@ -39,7 +40,7 @@ class TaskViewModel : ViewModel() {
     var tipsOfToday by mutableStateOf("今日获得0积分，快去完成下面的任务吧")
         private set
     //今日获取积分
-    var pointOfToday = 1200
+    var pointOfToday = user.pointOfToday
         private set
 
     fun updateTipsOfToday(){

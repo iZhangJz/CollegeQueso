@@ -19,6 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.zjz.collegeqapp.R
+import com.zjz.collegeqapp.model.LocalUserViewModel
 import com.zjz.collegeqapp.ui.componets.TopAppBar
 
 @Composable
@@ -31,6 +32,8 @@ fun MineScreen(){
         MenuItem(R.drawable.icon_menu_setting,"软件设置")
     )
 
+    val user = LocalUserViewModel.current.getUser()
+
     Column(modifier = Modifier){
         TopAppBar(){
             Text(text = "我的", fontSize = 18.sp, color = Color.White)
@@ -41,7 +44,7 @@ fun MineScreen(){
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.padding(vertical = 24.dp).padding(horizontal = 12.dp)
-                    ) {
+                ) {
                     // 头像
                     Image(
                         painter = painterResource(R.drawable.avatar),
@@ -52,11 +55,13 @@ fun MineScreen(){
                     Column(
                         verticalArrangement = Arrangement.SpaceAround,
                         modifier = Modifier.padding(horizontal = 16.dp).height(64.dp)
-                        ) {
+                    ) {
                         // 昵称
-                        Text(text = "昵称:Walker", color = Color(0xFF000000), fontSize = 20.sp,  )
+                        Text(text = "用户2568", color = Color(0xFF000000), fontSize = 20.sp,  )
                         // 用户名
-                        Text(text = "用户名:wk749828", color = Color(0xAA333333), fontSize = 12.sp)
+                        if (user != null) {
+                            Text(text = "id: ${user.getUserName()}", color = Color(0xAA333333), fontSize = 14.sp)
+                        }
                     }
                 }
             }
@@ -84,19 +89,19 @@ fun MineScreen(){
                                 .fillMaxWidth()
                                 .padding(vertical = 8.dp)
                         ){
-                           Text(
-                               text = menuList.title,
-                               fontSize = 16.sp,
-                               color = Color(0xFF333333),
-                               modifier = Modifier.weight(1f)
-                           )
-                           Icon(
-                               painter = painterResource(R.drawable.icon_double_right),
-                               contentDescription = null,
-                               modifier = Modifier.width(13.dp).padding(),
-                               tint = Color.Gray
+                            Text(
+                                text = menuList.title,
+                                fontSize = 16.sp,
+                                color = Color(0xFF333333),
+                                modifier = Modifier.weight(1f)
+                            )
+                            Icon(
+                                painter = painterResource(R.drawable.icon_double_right),
+                                contentDescription = null,
+                                modifier = Modifier.width(13.dp).padding(),
+                                tint = Color.Gray
 
-                           )
+                            )
                         }
                         Divider()
                     }
@@ -105,7 +110,9 @@ fun MineScreen(){
             }
         }
     }
+
 }
+
 
 //菜单实体类
 data class MenuItem(@DrawableRes val icon:Int,val title:String)

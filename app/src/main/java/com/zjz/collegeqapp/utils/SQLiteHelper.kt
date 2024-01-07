@@ -9,9 +9,14 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class SQLiteHelper(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,null,DATABASE_VERSION) {
 
+    // 用户表
     private val USER_TABLE_NAME = "user_info"
     private val COLUMN_USERNAME = "username"
     private val COLUMN_PASSWORD = "password"
+    private val COLUMN_POINT_TODAY = "point_today"
+    private val COLUMN_POINT_MONTH = "point_month"
+
+
 
     companion object{
         private const val DATABASE_NAME = "collegeQueso.db"
@@ -21,10 +26,13 @@ class SQLiteHelper(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,nu
     // 数据库被第一次创建时调用
     override fun onCreate(db: SQLiteDatabase) {
         // 创建用户信息表
-        val createUserTableQuery = "CREATE TABLE IF NOT EXISTS $USER_TABLE_NAME (" +
+        val createUserTableQuery =
+                "CREATE TABLE IF NOT EXISTS $USER_TABLE_NAME (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "$COLUMN_USERNAME TEXT NOT NULL, " +
-                "$COLUMN_PASSWORD TEXT NOT NULL);"
+                "$COLUMN_PASSWORD TEXT NOT NULL," +
+                "$COLUMN_POINT_TODAY INTEGER," +
+                "$COLUMN_POINT_MONTH INTEGER);"
         db.execSQL(createUserTableQuery)
     }
 
@@ -64,6 +72,8 @@ class SQLiteHelper(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,nu
         val values = ContentValues().apply {
             put(COLUMN_USERNAME,username)
             put(COLUMN_PASSWORD,password)
+            put(COLUMN_POINT_TODAY,0)
+            put(COLUMN_POINT_MONTH,0)
         }
 
         val row = db.insert(USER_TABLE_NAME,null,values)

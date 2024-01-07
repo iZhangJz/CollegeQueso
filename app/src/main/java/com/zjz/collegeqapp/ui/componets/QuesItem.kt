@@ -35,14 +35,14 @@ fun QuesItem(questionnaire: QuestionnaireEntity,modifier: Modifier = Modifier){
             Text(
                 "来源：${questionnaire.source}",
                 color = Color(0xFF999999),
-                fontSize = 12.sp,
+                fontSize = 14.sp,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
                 questionnaire.timeStamp,
                 color = Color(0xFF999999),
-                fontSize = 12.sp,
+                fontSize = 14.sp,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
                 )

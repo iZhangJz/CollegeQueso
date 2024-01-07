@@ -17,15 +17,17 @@ import androidx.compose.ui.text.*
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import com.zjz.collegeqapp.model.LocalTaskViewModel
+import com.zjz.collegeqapp.model.LocalUserViewModel
 import com.zjz.collegeqapp.ui.componets.ChartView
 import com.zjz.collegeqapp.ui.componets.CircleRing
 import com.zjz.collegeqapp.ui.componets.DailyTaskListView
 import com.zjz.collegeqapp.ui.componets.appBarHeight
-import com.zjz.collegeqapp.ui.viewmodel.TaskViewModel
 
 @Composable
-fun TasksScreen(taskViewModel: TaskViewModel = viewModel()){
+fun TasksScreen(){
+
+    val taskViewModel = LocalTaskViewModel.current
 
     // 定义圆弧高度
     var boxWidthDp: Int
@@ -41,6 +43,8 @@ fun TasksScreen(taskViewModel: TaskViewModel = viewModel()){
     LaunchedEffect(taskViewModel.pointOfToday){
         taskViewModel.updateTipsOfToday()
     }
+
+    val userViewModel = LocalUserViewModel.current
 
     Column(
         modifier = Modifier
@@ -91,7 +95,7 @@ fun TasksScreen(taskViewModel: TaskViewModel = viewModel()){
                     ) {
                         Text(
                             buildAnnotatedString {
-                                append(taskViewModel.pointOfMonth.toString())
+                                append(userViewModel.getUser()?.pointOfMonth.toString())
                                 withStyle(SpanStyle(fontSize = 12.sp)){
                                     append("分")
                                 }

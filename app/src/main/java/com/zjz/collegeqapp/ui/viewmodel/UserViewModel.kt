@@ -14,6 +14,10 @@ class UserViewModel(private val dbHelper: SQLiteHelper): ViewModel(){
             return user != null
         }
 
+    fun getUser():UserInfoEntity?{
+        return user
+    }
+
     fun login(userName: String,password: String): Boolean{
         if (!dbHelper.checkUserExist(userName,dbHelper.readableDatabase)){
             // 数据库不存在该用户，登录失败
