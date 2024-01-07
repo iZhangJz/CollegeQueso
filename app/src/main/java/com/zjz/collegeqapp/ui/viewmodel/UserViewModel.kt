@@ -20,9 +20,31 @@ class UserViewModel(private val dbHelper: SQLiteHelper): ViewModel(){
             return false
         }
         // 检查密码是否正确
-        if (!dbHelper.verifyPassword(userName,password)){
+        if (!dbHelper.verifyPassword(userName,password,dbHelper.readableDatabase)){
             return false
         }
         return true
+    }
+
+    fun register(userName: String,password: String,pwdConfirmation: String):Pair<Boolean,String>{
+        // 判断是否为空
+        if (userName == "" || password == "" || pwdConfirmation == ""){
+            return Pair(false,"用户名或密码不能为空")
+        }
+        // 检查该用户名是否存在
+        if (dbHelper.checkUserExist(userName,dbHelper.readableDatabase)){
+            // 注册失败
+            return Pair(false,"用户名已存在")
+        }
+        // 检查两次输入的密码是否相同
+        if ( password != pwdConfirmation){
+            return Pair(false,"两次输入的密码不匹配")
+        }
+        // 向数据库插入新用户
+        if (!dbHelper.insertUserInfo(userName,password,dbHelper.writableDatabase)){
+            // 插入失败 注册失败
+            return Pair(false,"服务器异常")
+        }
+        return Pair(true,"注册成功")
     }
 }

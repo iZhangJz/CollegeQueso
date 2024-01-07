@@ -11,6 +11,7 @@ import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.zjz.collegeqapp.model.LocalUserViewModel
 import com.zjz.collegeqapp.ui.screen.identity.LoginScreen
+import com.zjz.collegeqapp.ui.screen.identity.RegisterScreen
 import com.zjz.collegeqapp.ui.screen.navigation.Destinations
 import com.zjz.collegeqapp.ui.screen.secondlevel.QuestionnaireCreationScreen
 import com.zjz.collegeqapp.ui.screen.secondlevel.QuestionnaireDetailsScreen
@@ -45,7 +46,25 @@ fun NavHostApp(dbHelper: SQLiteHelper){
                     }, exitTransition = {
                         slideOutOfContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(500))
                     }){
-                        LoginScreen()
+                        LoginScreen(
+                            onNavigateToMain = {navController.navigate(Destinations.MainFrame.route)},
+                            onNavigateToRegister = {navController.navigate(Destinations.RegisterScreen.route)}
+                        )
+                }
+
+
+                // 注册页面
+                composable(
+                    Destinations.RegisterScreen.route,
+                    enterTransition = {
+                        // 设置页面跳转动画
+                        slideIntoContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(500))
+                    }, exitTransition = {
+                        slideOutOfContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(500))
+                    }){
+                        RegisterScreen(
+                            onNavigateToMain = {navController.navigate(Destinations.MainFrame.route)}
+                        )
                 }
 
 
@@ -69,6 +88,7 @@ fun NavHostApp(dbHelper: SQLiteHelper){
                         onNavigateToQuesCreation = {navController.navigate(Destinations.QuesCreationScreen.route)}
                     )
                 }
+
                 // 二级页面--问卷详情页
                 composable(Destinations.QuesDetailsScreen.route){
                     QuestionnaireDetailsScreen(

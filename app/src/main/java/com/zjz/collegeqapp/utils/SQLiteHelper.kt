@@ -46,9 +46,8 @@ class SQLiteHelper(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,nu
 
     // 查询用户密码是否匹配
     @SuppressLint("Range")
-    fun verifyPassword(username: String, password: String):Boolean{
+    fun verifyPassword(username: String, password: String,db: SQLiteDatabase):Boolean{
         var result = false
-        val db = this.readableDatabase
         val query = "SELECT $COLUMN_PASSWORD FROM $USER_TABLE_NAME WHERE $COLUMN_PASSWORD = ?"
 
         val cursor:Cursor = db.rawQuery(query, arrayOf(username))
@@ -61,8 +60,7 @@ class SQLiteHelper(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,nu
     }
 
     // 插入用户信息
-    fun insertUserInfo(username: String, password: String):Boolean{
-        val db = writableDatabase
+    fun insertUserInfo(username: String, password: String,db: SQLiteDatabase):Boolean{
         val values = ContentValues().apply {
             put(COLUMN_USERNAME,username)
             put(COLUMN_PASSWORD,password)

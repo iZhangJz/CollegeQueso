@@ -10,6 +10,9 @@ sealed class Destinations(val route:String){
     // 登录页面
     object LoginScreen : Destinations("LoginScreen")
 
+    // 注册页面
+    object RegisterScreen : Destinations("RegisterScreen")
+
     // 一级页面主框架
     object MainFrame : Destinations("MainFrame")
 

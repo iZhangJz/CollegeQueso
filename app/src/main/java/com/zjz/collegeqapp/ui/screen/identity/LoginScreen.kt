@@ -29,7 +29,8 @@ import com.zjz.collegeqapp.model.LocalUserViewModel
 
 @Composable
 fun LoginScreen(
-    onNavigateToMain: ()->Unit = {}
+    onNavigateToMain: ()->Unit = {},
+    onNavigateToRegister: ()->Unit = {}
     ){
 
     val userViewModel = LocalUserViewModel.current
@@ -200,7 +201,9 @@ fun LoginScreen(
 
             }
             // 注册按钮
-            TextButton(onClick = {} ){
+            TextButton(
+                onClick = {onNavigateToRegister()}
+            ){
                 Text(
                     text = "还没有账号？点击立即注册",
                     color = Color.LightGray,
