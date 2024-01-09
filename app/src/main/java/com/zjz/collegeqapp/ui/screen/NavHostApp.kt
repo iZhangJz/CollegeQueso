@@ -49,13 +49,14 @@ fun NavHostApp(dbHelper: SQLiteHelper){
                     },
                     ){
                         LoginScreen(
-                            onNavigateToMain = {navController.navigate(Destinations.MainFrame.route){
-                                popUpTo("LoginScreen"){inclusive = true}
-                            } },
+                            onNavigateToMain = {
+                                navController.navigate(Destinations.MainFrame.route){
+                                    popUpTo("LoginScreen"){inclusive = true}
+                                }
+                            },
                             onNavigateToRegister = {navController.navigate(Destinations.RegisterScreen.route)}
                         )
                 }
-
 
                 // 注册页面
                 composable(
