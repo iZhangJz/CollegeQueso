@@ -11,8 +11,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
-import com.zjz.collegeqapp.ui.screen.NavHostApp
-import com.zjz.collegeqapp.ui.theme.CollegeQAppTheme
+import com.zjz.collegeqapp.view.screen.NavHostApp
+import com.zjz.collegeqapp.view.theme.CollegeQAppTheme
 import com.zjz.collegeqapp.utils.SQLiteHelper
 
 class MainActivity : ComponentActivity() {
